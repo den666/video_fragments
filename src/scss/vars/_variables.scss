@@ -1,0 +1,65 @@
+@import "mixins";
+
+$open-sans-font-path: "./fonts/open-sans/";
+$primary-font: "Open-sans", Sans-Serif;
+
+$color-primary: #6cc0e4;
+$color-secondary: #454545;
+$color-gray: #b3b3b3;
+$color-warning:  #f5da51;
+$color-white:  #fff ;
+
+$small-screen-down: 599px !default;
+$small-screen: 600px !default;
+
+$medium-screen-down: 989px !default;
+$medium-screen: 990px !default;
+
+$large-screen-down: 1299px !default;
+$large-screen: 1300px !default;
+
+
+$small-down: "only screen and (max-width : #{$small-screen-down})" !default;
+$small-and-up: "only screen and (min-width : #{$small-screen})" !default;
+
+$medium-down: "only screen and (max-width : #{$medium-screen-down})" !default;
+$medium-and-up: "only screen and (min-width : #{$medium-screen})" !default;
+
+$large-down: "only screen and (max-width : #{$large-screen-down})" !default;
+$large-and-up: "only screen and (min-width : #{$large-screen})" !default;
+
+$base-rem-size: 16px;
+$base-rem-medium-size: 14px;
+$base-rem-small-size: 12px;
+
+$h1-fontsize: 3rem !default;
+$h2-fontsize: 2.5rem !default;
+$h3-fontsize: 2rem !default;
+$h4-fontsize: 1.75rem !default;
+$h5-fontsize: 1.50rem !default;
+$h6-fontsize: 1.25rem !default;
+
+$h1-md-fontsize: 2.10rem !default;
+$h2-md-fontsize: 1.85rem !default;
+$h3-md-fontsize: 1.60rem !default;
+$h4-md-fontsize: 1.45rem !default;
+$h5-md-fontsize: 1.30rem !default;
+$h6-md-fontsize: 1.15rem !default;
+
+$font-small: 86% !default;
+$font-small-large: 75% !default;
+
+$z-depth-0: none !important;
+$z-depth-05: 0 1px 2px 0 rgba(0,0,0,0.16),0 1px 5px 0 rgba(0,0,0,0.02);
+$z-depth-1: 0 2px 5px 0 rgba(0, 0, 0, 0.06), 0 2px 10px 0 rgba(0, 0, 0, 0.02);
+$z-depth-1-half: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+$z-depth-2: 0 8px 17px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+$z-depth-2-top: 0 -4px 17px 0 rgba(0, 0, 0, 0.1), 0 -3px 20px 0 rgba(0, 0, 0, 0.1);
+$z-depth-3: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+$z-depth-4: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+$z-depth-5: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+
+$input-border-width: 2px;
+$form-items-height: 2;
+$input-border: rgba($color-gray, .4);
+$form-text-size: 1rem;

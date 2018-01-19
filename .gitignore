@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.idea/
+.idea/vcs.xml
+.DS_Store
+npm-debug.log
+webpack-assets.json

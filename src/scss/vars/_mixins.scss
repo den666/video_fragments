@@ -1,0 +1,23 @@
+@mixin box-shadow($args1) {
+  -webkit-box-shadow: $args1;
+  -moz-box-shadow: $args1;
+  box-shadow: $args1;
+}
+
+@mixin box-shadow-2($args1, $args2) {
+  -webkit-box-shadow: $args1, $args2;
+  -moz-box-shadow: $args1, $args2;
+  box-shadow: $args1, $args2;
+}
+
+@mixin no-shadow(){
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+@mixin opacity($opacity){
+  opacity: $opacity;
+  -moz-opacity: $opacity;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=$opacity);
+}

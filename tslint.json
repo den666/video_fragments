@@ -1,0 +1,19 @@
+{
+  "extends": "tslint-config-airbnb",
+  "rules": {
+    "eofline": false,
+    "max-line-length": {
+      "options": [120]
+    },
+    "object-curly-spacing": false,
+    "semicolon": [true, "always", "ignore-interfaces"],
+    "ter-indent": [true, 4, { "SwitchCase": 1 }],
+    "trailing-comma": false,
+    "variable-name": [true, "check-format", "allow-pascal-case"]
+  },
+  "jsRules": {
+    "max-line-length": {
+      "options": [120]
+    }
+  }
+}

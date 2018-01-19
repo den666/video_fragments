@@ -1,0 +1,28 @@
+.editor{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba($color-gray,.5);
+  display: none;
+  &.active{
+    display: block;
+  }
+  @include transition(all .5s);
+  .modal-container{
+    width: 90%;
+    max-width: 600px;
+    background: $color-white;
+    @include box-shadow($z-depth-1-half);
+    margin: auto;
+    border-radius: 10px;
+    max-height: 95%;
+    overflow: auto;
+    .header{
+      border-bottom: 1px solid rgba($color-primary, .5);
+    }
+    .footer{
+      border-top: 1px solid rgba($color-primary, .5);
+    }
+  }
+}

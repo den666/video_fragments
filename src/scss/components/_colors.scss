@@ -1,0 +1,15 @@
+$colors: (
+        "primary": $color-primary,
+        "secondary": $color-secondary,
+        "warning": $color-warning,
+        "gray": $color-gray,
+);
+
+@each $color_type, $color_value in $colors {
+    .bg-#{$color_type} {
+      background-color: $color_value;
+    }
+    .text-#{$color_type} {
+      color: $color_value;
+    }
+}

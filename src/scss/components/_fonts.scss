@@ -1,0 +1,61 @@
+h1, h2, h3, h4, h5, h6, .size-h1, .size-h2, .size-h3, .size-h4, .size-h5, .size-h6 {
+  line-height: 110%;
+  margin: .5em 0;
+}
+a {
+  text-decoration: none;
+}
+
+h1, .size-h1{ font-size: $h1-fontsize;}
+h2, .size-h2{ font-size: $h2-fontsize;}
+h3, .size-h3{ font-size: $h3-fontsize;}
+h4, .size-h4{ font-size: $h4-fontsize;}
+h5, .size-h5{ font-size: $h5-fontsize;}
+h6, .size-h6{ font-size: $h6-fontsize;}
+
+@media #{$medium-down}{
+  h1, .size-h1, .size-1 { font-size: $h1-md-fontsize;}
+  h2, .size-h2, .size-2 { font-size: $h2-md-fontsize;}
+  h3, .size-h3, .size-3 { font-size: $h3-md-fontsize;}
+  h4, .size-h4, .size-4 { font-size: $h4-md-fontsize;}
+  h5, .size-h5, .size-5 { font-size: $h5-md-fontsize;}
+  h6, .size-h6, .size-6 { font-size: $h6-md-fontsize;}
+}
+
+strong, .strong {
+  font-weight: 700;
+}
+.regular {
+  font-weight: 500;
+}
+.light {
+  font-weight: 300;
+}
+
+small, .small {
+  font-size: $font-small-large;
+  @media #{$medium-down} {
+    font-size: $font-small;
+  }
+}
+
+.truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.left-align {
+  text-align: left;
+}
+.right-align {
+  text-align: right
+}
+.center-align {
+  text-align: center;
+}

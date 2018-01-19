@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Open-sans";
+  src: url('#{$open-sans-font-path}OpenSans-Regular.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Open-sans";
+  src: url('#{$open-sans-font-path}OpenSans-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Open-sans";
+  src: url('#{$open-sans-font-path}OpenSans-Light.ttf');
+  font-weight: 300;
+}

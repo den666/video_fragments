@@ -1,0 +1,22 @@
+.video-container{
+  left: 0;
+  width: 100%;
+  padding-left: 350px;
+  height: 100%;
+  overflow: hidden;
+  @media #{$medium-down} {
+    padding-left: 200px;
+  }
+  @media #{$small-down} {
+    padding-left: 0;
+  }
+  .player-area{
+    width: 100%;
+    max-width: 855px;
+    position: relative;
+    video{
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+}

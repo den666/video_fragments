@@ -1,0 +1,57 @@
+.range-component{
+  width: calc(100% - 60px);
+  .left{
+    border-left: 2px solid $color-primary;
+  }
+  .right{
+    border-right: 2px solid $color-primary;
+  }
+  .time-line{
+    height: 1rem;
+    background: rgba($color-gray, .4);
+    position: relative;
+    border-right: 2px solid $color-primary;
+    border-left: 2px solid $color-primary;
+    .drag-selector{
+      display: block;
+      position: relative;
+      background: $color-gray;
+      height: 100%;
+    }
+    .range-item{
+      position: absolute;
+      bottom: -30px;
+      width: 50px;
+      height: 30px;
+      cursor: pointer;
+      &:hover{
+        opacity: .8;
+      }
+      &.range-a{
+        margin-left: -25px;
+      }
+      &.range-b{
+        margin-right: -25px;
+      }
+      &:after{
+        content: '';
+        position: absolute;
+        left: 17px;
+        top: -8px;
+        width: 0;
+        border-bottom: 8px solid $color-primary;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+      }
+      span{
+        float: left;
+        background: $color-primary;
+        display: inline-block;
+        width: 100%;
+        color: #fff;
+        padding: 0;
+        pointer-events: none;
+      }
+    }
+  }
+}

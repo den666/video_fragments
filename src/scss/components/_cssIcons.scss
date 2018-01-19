@@ -1,0 +1,63 @@
+.i-css{
+  font-size: 1.5rem;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  border-color: $color-primary;
+  &:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top:0;
+    left: 0;
+    border-color: $color-primary;
+    background: $color-primary;
+    box-sizing: border-box;
+  }
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    top:0;
+    left: 0;
+    border-color: $color-primary;
+    background: $color-primary;
+    box-sizing: border-box;
+  }
+  &.i-close{
+    &:after{
+      width: 1em;
+      height: .1em;
+      @include rotate((45deg));
+      top: .4em;
+    }
+    &:before{
+      width: 1em;
+      height: .1em;
+      @include rotate((-45deg));
+      top: .4em;
+    }
+  }
+  &.i-plus{
+    &:after{
+      width: .9em;
+      height: .1em;
+      left: 0;
+      top: .4em;
+    }
+    &:before{
+      width: .1em;
+      height: .9em;
+      left: .4em;
+      top: 0;
+    }
+  }
+  &.i-play{
+    width: 0;
+    height: 0;
+    border-left: 1rem solid $color-primary;
+    border-top: 1rem solid transparent;
+    border-bottom: 1rem solid transparent;
+  }
+}

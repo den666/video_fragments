@@ -1,0 +1,106 @@
+// Background Size
+
+@mixin background-size($args) {
+  -webkit-background-size: $args;
+  background-size: $args;
+}
+
+// Box Sizing
+
+@mixin box-sizing($args) {
+  -webkit-box-sizing: $args;
+  -moz-box-sizing: $args;
+  box-sizing: $args;
+}
+@mixin border-box(){
+  @include box-sizing(border-box);
+}
+@mixin content-box(){
+  @include box-sizing(content-box);
+}
+
+//Flexbox
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex-direction($value){
+  flex-direction: $value;
+  -ms-flex-direction: $value;
+  -webkit-flex-direction: $value;
+}
+
+@mixin flex-wrap($value){
+  flex-wrap: $value;
+  -webkit-flex-wrap: $value;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+@mixin align($align) {
+  -webkit-flex-align: $align;
+  -ms-flex-align: $align;
+  -webkit-align-items: $align;
+  align-items: $align;
+}
+@mixin justify-content($val) {
+  -webkit-justify-content: $val;
+  justify-content: $val;
+}
+
+// Transforms
+
+@mixin transform($args) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+@mixin rotate($deg:45deg){
+  @include transform(rotate($deg));
+}
+@mixin scale($factor:.5){
+  @include transform(scale($factor));
+}
+@mixin translate($x,$y){
+  @include transform(translate($x,$y));
+}
+@mixin translate3d($x,$y,$z) {
+  @include transform(translate3d($x,$y,$z));
+}
+@mixin translateHardware($x,$y) {
+  @include translate($x,$y);
+  -webkit-transform: translate3d($x,$y,0);
+  -moz-transform: translate3d($x,$y,0);
+  -o-transform: translate3d($x,$y,0);
+  -ms-transform: translate3d($x,$y,0);
+  transform: translate3d($x,$y,0);
+}
+
+
+// Transitions
+
+@mixin transition($args:200ms) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -o-transition: $args;
+  -ms-transition: $args;
+  transition: $args;
+}

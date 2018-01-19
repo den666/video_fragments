@@ -1,0 +1,51 @@
+.list-component{
+  display: block;
+  margin: 1rem 1rem 0;
+  .list-item{
+    float: left;
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;
+    @include box-shadow($z-depth-1);
+    &.main{
+      &:after{
+        content: 'main';
+        background: $color-primary;
+        font-size: .6rem;
+        position: absolute;
+        width: 80px;
+        top: 0;
+        left: 0;
+        text-align: center;
+        color: $color-white;
+        height: 1.2rem;
+        line-height: 1.2rem;
+      }
+    }
+    .play-icon{
+      width: 80px;
+      align-self: center;
+      position: relative;
+      i{
+        margin: auto;
+      }
+    }
+    .plan-data{
+      justify-content: center;
+      align-self: center;
+      border-left: 1px solid rgba($color-primary, .2);
+      padding: .5rem 1rem;
+      min-height: 70px;
+      font-size: .8rem;
+      color: $color-gray;
+      flex: 1;
+      span{
+        color: $color-primary;
+        font-weight: 700;
+      }
+    }
+  }
+  &:last-child{
+    border-bottom: 0;
+  }
+}
