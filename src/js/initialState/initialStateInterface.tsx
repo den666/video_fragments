@@ -1,5 +1,6 @@
 export interface videoReducer {
-    videoList: videoItem[]
+    videoList: videoItem[],
+    videoActive: videoItem
 }
 
 export interface videoItem {
@@ -9,7 +10,8 @@ export interface videoItem {
     main: boolean,
     start?: number,
     end?: number,
-    tags: string
+    tags: string,
+    isLoad?: boolean
 }
 
 export interface appReducer {

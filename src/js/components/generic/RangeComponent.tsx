@@ -26,9 +26,7 @@ export default class RangeView extends React.Component<RangeViewProps, any> {
     }
 
     startDragEvent = (ref:string, e:any) => {
-
         const {videoDuration, setValue} = this.props;
-
         const itemA = this.refs.dragA;
         const itemB = this.refs.dragB;
         const dragContainer = this.refs.dragContainer;
@@ -70,22 +68,31 @@ export default class RangeView extends React.Component<RangeViewProps, any> {
                     {videoDuration ? toDateString(videoDuration) : '00:00'}
                 </div>
                 <div ref="dragContainer" className="time-line m-b-lg clearfix">
-                    <div className="drag-selector" style={{width: this.state.statusBar, left: this.state.left}}></div>
+                    <div className="drag-selector" style={{width: this.state.statusBar, left: this.state.left}}>
+                    </div>
                     <div className="range-item range-a"
                          ref="dragA"
-                         style={{left: this.state.left}}
-                         onDrag={(e:any) => this.startDragEvent('dragA', e)}>
+                         style={{left: this.state.left}}>
                         <span className="small center-align">
                             {start ? toDateString(start) : '00:00'}
                         </span>
+                        <div draggable
+                             className="drag-area"
+                             onTouchMove={(e:any) => this.startDragEvent('dragA', e)}
+                             onDrag={(e:any) => this.startDragEvent('dragA', e)}>
+                        </div>
                     </div>
                     <div className="range-item range-b"
                          ref="dragB"
-                         onDrag={(e:any) => this.startDragEvent('dragB', e)}
                          style={{right: this.state.right}}>
                         <span className="small center-align">
                             {end ? toDateString(end) : (videoDuration ? toDateString(videoDuration) : '00:00')}
                         </span>
+                        <div draggable
+                             className="drag-area"
+                             onTouchMove={(e:any) => this.startDragEvent('dragB', e)}
+                             onDrag={(e:any) => this.startDragEvent('dragB', e)}>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,22 @@
 .list-component{
   display: block;
   margin: 1rem 1rem 0;
+  @media #{$small-down} {
+    white-space:nowrap;
+  }
   .list-item{
     float: left;
     width: 100%;
     margin-bottom: 1rem;
     position: relative;
     @include box-shadow($z-depth-1);
+    @media #{$small-down} {
+      width: 120px;
+      display: inline-block;
+    }
+    &.active{
+      background: rgba($color-gray, .1);
+    }
     &.main{
       &:after{
         content: 'main';
@@ -29,6 +39,9 @@
       i{
         margin: auto;
       }
+      @media #{$small-down} {
+        display: none;
+      }
     }
     .plan-data{
       justify-content: center;
@@ -39,9 +52,23 @@
       font-size: .8rem;
       color: $color-gray;
       flex: 1;
+      @media #{$small-down} {
+        min-height: 65px;
+      }
       span{
         color: $color-primary;
         font-weight: 700;
+        @media #{$small-down} {
+          display: none;
+        }
+      }
+      .ttr{
+        @media #{$small-down} {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import HeaderContainer from './containers/HeaderContainer';
-import VideoPlayerContainer from './containers/VideoPlayerContainer';
+import VideoAreaContainer from './containers/VideoAreaContainer';
 import ModalContainer from './containers/ModalContainer';
 import VideoListContainer from './containers/VideoListContainer';
 
@@ -18,7 +18,7 @@ export default class WebApp extends React.Component<WebInterface, {}> {
                 </div>
                 <div className="flex-row flex-1 relative">
                     <div className="video-container flex-center flex-middle flex-column">
-                        <VideoPlayerContainer/>
+                        <VideoAreaContainer/>
                     </div>
                     <div className="video-nav">
                         <VideoListContainer/>

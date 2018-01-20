@@ -1,19 +1,18 @@
 import * as React from 'react';
-import {VideoPlayerContainerProps} from '../containers/VideoPlayerContainer';
+import {VideoAreaContainerProps} from '../containers/VideoAreaContainer';
+import VideoPlayerComponent from '../components/generic/VideoPlayerComponent';
 import {EDITOR_LABELS} from '../constants/appLabelsConstants';
 
-export default class RoutesView extends React.Component<VideoPlayerContainerProps, any> {
-    constructor(props:VideoPlayerContainerProps) {
+export default class VideoAreaView extends React.Component<VideoAreaContainerProps, any> {
+    constructor(props:VideoAreaContainerProps) {
         super(props);
     }
     render() {
-        const {openEdit} = this.props;
+        const {openEdit, videoActive, nextVideo} = this.props;
         return (
             <div className="width-100 center-align flex-row flex-center">
                 <div className="p-l-lg p-r-lg player-area">
-                    <video id="frag1" controls preload="metadata" width="100%">
-                        <source src="http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4#t=00:00:20"/>
-                    </video>
+                    <VideoPlayerComponent nextVideo={nextVideo} videoActive={videoActive}/>
                     <div className="right-align m-t">
                         <a onClick={() => openEdit()} className="btn-defaul">{EDITOR_LABELS.ADD_FRAGMENT}</a>
                     </div>
