@@ -3,12 +3,14 @@ import {videoItem} from '../../initialState/initialStateInterface';
 import {EDITOR_LABELS, LAYOUT} from '../../constants/appLabelsConstants';
 import {toDateString} from '../../utils/dateUtils';
 import ProgressStatus from '../generic/ProgressStatus';
+import VideoTimeLineListComponent from '../generic/VideoTimeLineListComponent';
 import {hashCode} from '../../utils/stringUtils';
 
 interface videoPlayerProps {
     videoActive: videoItem,
     videoList: videoItem[],
     nextVideo: Function,
+    setActiveVideo: Function,
     prevVideo: Function
 }
 
@@ -92,6 +94,14 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
         document.getElementById('fragmentVideo').addEventListener('durationchange', this.getVideoData);
     }
 
+    gotoPoint = (item:videoItem) => {
+        const editorVideoItem:any = document.getElementById('fragmentVideo');
+        if (editorVideoItem && editorVideoItem.readyState) {
+            editorVideoItem.currentTime = item.start;
+            editorVideoItem.play();
+        }
+    }
+
 
     componentWillReceiveProps (nextProps: videoPlayerProps) {
         if (nextProps.videoActive.isLoad) {
@@ -117,7 +127,7 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
     }
 
     render() {
-        const {videoActive, videoList, nextVideo, prevVideo} = this.props;
+        const {videoActive, setActiveVideo, videoList, nextVideo, prevVideo} = this.props;
         return  <div className="width-100">
                     <div className="left-align m-b-lg">
                         <span className="light size-h4 text-primary">{videoActive.name}</span>
@@ -172,6 +182,18 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
                                         progress={this.state.progress}
                                         videoDuration={this.state.videoDuration}/>
                     : null}
+
+                    {videoActive.main && videoList.length > 1 ?
+                        [
+                            <div key="a" className="text-primary size-h4">{EDITOR_LABELS.VIDEO_LIST}</div>,
+                            <VideoTimeLineListComponent
+                                setActiveVideo={this.gotoPoint}
+                                key="b"
+                                videoList={videoList}
+                                videoDuration={this.state.videoDuration}/>
+                        ]
+                    : null}
+
                 </div>;
     }
 }

@@ -38,21 +38,22 @@ export default class VideoAreaView extends React.Component<VideoAreaContainerPro
     }
 
     render() {
-        const {openEdit, isEditing, videoActive, videoList, prevVideo, nextVideo} = this.props;
+        const {openEdit, isEditing, setActiveVideo, videoActive, videoList, prevVideo, nextVideo} = this.props;
         return (
-            <div className="width-100 center-align flex-row flex-center">
+            <div className="p-t p-b width-100 center-align flex-row flex-center">
                 <div className="p-l-lg p-r-lg player-area">
                     <VideoPlayerComponent nextVideo={nextVideo}
+                                          setActiveVideo={setActiveVideo}
                                           prevVideo={prevVideo}
                                           videoList={videoList}
                                           videoActive={videoActive}/>
                     {isEditing ?
-                        <div className="right-align">
+                        <div className="right-align m-b">
                             <a onClick={() => openEdit()} className="btn-defaul m-t ">{EDITOR_LABELS.ADD_FRAGMENT}</a>
                             <a onClick={this.publicView} className="m-l m-t btn-defaul">{EDITOR_LABELS.PUBLIC_VIEW}</a>
                         </div>
                         :
-                        <div className="right-align">
+                        <div className="right-align m-b">
                             <a onClick={this.editView} className="m-l m-t btn-defaul">{EDITOR_LABELS.EDIT_VIEW}</a>
                         </div>
                     }

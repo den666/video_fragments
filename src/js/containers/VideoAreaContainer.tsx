@@ -13,6 +13,7 @@ interface stateProps {
 interface dispatchProps {
     openEdit: Function,
     nextVideo: Function,
+    setActiveVideo: Function,
     prevVideo: Function
 }
 
@@ -28,6 +29,12 @@ const mapStateToProps = (state:AppInterface): stateProps => {
 
 const mapDispatchToProps = (dispatch:Dispatch<any>): dispatchProps => {
     return {
+        setActiveVideo: (data:videoItem) => {
+            dispatch({
+                type: ACTIVE_VIDEO_CHANGE,
+                payload: data
+            });
+        },
         openEdit: () => {
             dispatch({
                 type: SHOW_MODAL

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {VideoListContainerProps, newListInterface} from '../containers/VideoListContainer';
 import {EDITOR_LABELS} from '../constants/appLabelsConstants';
 import {videoItem} from '../initialState/initialStateInterface';
-import {fixText} from '../utils/stringUtils';
+import {fixText, hashCode} from '../utils/stringUtils';
 
 
 export default class VideoListView extends React.Component<VideoListContainerProps, any> {
@@ -47,6 +47,15 @@ export default class VideoListView extends React.Component<VideoListContainerPro
 
     }
 
+    componentWillReceiveProps (nextProps:VideoListContainerProps) {
+        if (hashCode(this.props.videoList) !== hashCode(nextProps.videoList)) {
+            this.setState({
+                searchValue: '',
+                videoList: nextProps.videoList
+            });
+        }
+    }
+
     render() {
         const {videoActive, setActiveVideo, isEditing} = this.props;
         return (
@@ -86,6 +95,10 @@ export default class VideoListView extends React.Component<VideoListContainerPro
                                     : null}
                             </div>;
                 })
+                }
+                {videoActive.isLoad &&
+                    <div className="block-area">
+                    </div>
                 }
                 <div className="clearfix"></div>
             </div>

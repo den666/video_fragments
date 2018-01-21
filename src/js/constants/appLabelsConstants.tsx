@@ -13,5 +13,6 @@ export const EDITOR_LABELS = {
     SAVE: 'save fragment',
     ERROR: '*please select a fragment and complete the input name',
     EDIT: 'edit',
+    VIDEO_LIST: 'Video List',
     DELETE: 'delete'
 };

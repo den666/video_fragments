@@ -38,13 +38,11 @@ const mapStateToProps = (state:AppInterface): stateProps => {
 
 const mapDispatchToProps = (dispatch:Dispatch<any>): dispatchProps => {
     return {
-        setActiveVideo: (data:videoItem, videoActive: videoItem) => () => {
-            if (videoActive.id !== data.id && !videoActive.isLoad) {
-                dispatch({
-                    type: ACTIVE_VIDEO_CHANGE,
-                    payload: data
-                });
-            }
+        setActiveVideo: (data:videoItem) => () => {
+            dispatch({
+                type: ACTIVE_VIDEO_CHANGE,
+                payload: data
+            });
         },
         deleteVideo: (id:number, isActive: null | videoItem) => () => {
             console.log('eliminar', id);
@@ -78,11 +76,12 @@ const mapDispatchToProps = (dispatch:Dispatch<any>): dispatchProps => {
 const mergeProps = (stateProps: stateProps, dispatchProps: dispatchProps) => {
     const newList = stateProps.videoList.map((item, key) => {
         const newItem:newListInterface = {...item};
-        newItem.setActiveVideo = () => dispatchProps.setActiveVideo(item, stateProps.videoActive);
+        const tempItem = {...item};
+        newItem.setActiveVideo = () => dispatchProps.setActiveVideo(tempItem);
         newItem.editVideo = () => dispatchProps.editVideo(item);
         newItem.deleteVideo = () => dispatchProps.deleteVideo(
-                                        item.id,
-                                        (stateProps.videoActive.id === item.id && stateProps.videoList[0])
+                                        tempItem.id,
+                                        (stateProps.videoActive.id === tempItem.id && stateProps.videoList[0])
                                     );
         return newItem;
     });
@@ -92,6 +91,7 @@ const mergeProps = (stateProps: stateProps, dispatchProps: dispatchProps) => {
         videoList: [...newList]
     };
 };
+
 
 const VideoListContainer = connect<stateProps, dispatchProps, any>(
     mapStateToProps,

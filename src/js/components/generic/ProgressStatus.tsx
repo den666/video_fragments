@@ -1,21 +1,21 @@
 import * as React from 'react';
 import {toDateString} from '../../utils/dateUtils';
 
-interface RangeViewProps {
+interface ProgressViewProps {
     videoDuration: number,
     start: number,
     end: number,
     progress: number
 }
 
-export default class ProgressStatusView extends React.Component<RangeViewProps, any> {
+export default class ProgressStatusView extends React.Component<ProgressViewProps, any> {
 
     public refs: {
         dragContainer: HTMLDivElement;
     };
 
 
-    constructor(props:RangeViewProps) {
+    constructor(props:ProgressViewProps) {
         super(props);
         this.state = {
             left: 0,
@@ -25,7 +25,7 @@ export default class ProgressStatusView extends React.Component<RangeViewProps, 
         };
     }
 
-    getPosition = (nextProps:RangeViewProps) => {
+    getPosition = (nextProps:ProgressViewProps) => {
         const {videoDuration, start, end, progress} = nextProps;
         const mainProgressWidth = this.refs.dragContainer.offsetWidth;
         const left = (start * mainProgressWidth) / videoDuration;
@@ -40,7 +40,7 @@ export default class ProgressStatusView extends React.Component<RangeViewProps, 
         });
     }
 
-    componentWillReceiveProps (nextProps:RangeViewProps) {
+    componentWillReceiveProps (nextProps:ProgressViewProps) {
         this.getPosition(nextProps);
     }
 

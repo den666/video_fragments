@@ -1,5 +1,40 @@
 .range-component{
   width: calc(100% - 60px);
+  &.range-component-time{
+    .left{
+      border-left: 0;
+      padding: 0!important;
+    }
+    .right{
+      border-right: 0;
+      padding: 0!important;
+    }
+    .time-line{
+      .range-item{
+        cursor: pointer;
+        &:hover{
+          z-index: 30;
+          &:after{
+            border-bottom: 8px solid $color-gray;
+          }
+          span{
+            background: $color-gray;
+          }
+        }
+        &:before{
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border-radius: 10px;
+          border: 1px solid $color-primary;
+          top: -30px;
+          left: 50%;
+          margin-left: -10px;
+        }
+      }
+    }
+  }
   .left{
     border-left: 2px solid $color-primary;
   }

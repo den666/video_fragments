@@ -3,7 +3,9 @@
   width: 100%;
   padding-left: 350px;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+
   @media #{$medium-down} {
     padding-left: 280px;
   }

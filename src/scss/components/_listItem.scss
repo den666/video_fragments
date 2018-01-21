@@ -1,6 +1,17 @@
 .list-component{
   display: block;
   margin: 1rem 1rem 0;
+  padding-bottom: 2rem;
+  position: relative;
+  .block-area{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-white, .6);
+    z-index: 20;
+  }
   @media #{$small-down} {
     white-space:nowrap;
   }
