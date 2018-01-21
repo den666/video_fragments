@@ -12,3 +12,17 @@ export const hashCode = (value: string | object): number => {
     }
     return hash;
 };
+
+export const  fixText = (string:string) => {
+    const newString = String(string);
+    let str = newString.toLowerCase();
+
+    for (let i = 0;i < str.length; i = i + 1) {
+        if (str.charAt(i) === 'á') str = str.replace(/á/,'a');
+        if (str.charAt(i) === 'é') str = str.replace(/é/,'e');
+        if (str.charAt(i) === 'í') str = str.replace(/í/,'i');
+        if (str.charAt(i) === 'ó') str = str.replace(/ó/,'o');
+        if (str.charAt(i) === 'ú') str = str.replace(/ú/,'u');
+    }
+    return str;
+};

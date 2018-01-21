@@ -7,15 +7,55 @@ export default class VideoAreaView extends React.Component<VideoAreaContainerPro
     constructor(props:VideoAreaContainerProps) {
         super(props);
     }
+
+    handleOnKeyDown = (e: KeyboardEvent): void => {
+        if (!this.props.videoActive.isLoad && this.props.videoList.length > 1) {
+            if (e.keyCode === 39) {
+                console.log('si');
+                this.props.nextVideo();
+            }
+            if (e.keyCode === 37) {
+                console.log('no');
+                this.props.prevVideo();
+            }
+        }
+    }
+
+    publicView = () => {
+        window.location.href = '/index.html?edit=false';
+    }
+
+    editView = () => {
+        window.location.href = '/';
+    }
+
+    componentDidMount () {
+        document.addEventListener('keydown', this.handleOnKeyDown);
+    }
+
+    componentWillUnmount () {
+        document.removeEventListener('keydown', this.handleOnKeyDown);
+    }
+
     render() {
-        const {openEdit, videoActive, nextVideo} = this.props;
+        const {openEdit, isEditing, videoActive, videoList, prevVideo, nextVideo} = this.props;
         return (
             <div className="width-100 center-align flex-row flex-center">
                 <div className="p-l-lg p-r-lg player-area">
-                    <VideoPlayerComponent nextVideo={nextVideo} videoActive={videoActive}/>
-                    <div className="right-align m-t">
-                        <a onClick={() => openEdit()} className="btn-defaul">{EDITOR_LABELS.ADD_FRAGMENT}</a>
-                    </div>
+                    <VideoPlayerComponent nextVideo={nextVideo}
+                                          prevVideo={prevVideo}
+                                          videoList={videoList}
+                                          videoActive={videoActive}/>
+                    {isEditing ?
+                        <div className="right-align">
+                            <a onClick={() => openEdit()} className="btn-defaul m-t ">{EDITOR_LABELS.ADD_FRAGMENT}</a>
+                            <a onClick={this.publicView} className="m-l m-t btn-defaul">{EDITOR_LABELS.PUBLIC_VIEW}</a>
+                        </div>
+                        :
+                        <div className="right-align">
+                            <a onClick={this.editView} className="m-l m-t btn-defaul">{EDITOR_LABELS.EDIT_VIEW}</a>
+                        </div>
+                    }
                 </div>
             </div>
         );

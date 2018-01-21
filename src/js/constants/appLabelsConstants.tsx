@@ -6,6 +6,8 @@ export const LAYOUT = {
 export const EDITOR_LABELS = {
     ADD_NEW_FRAGMENT: 'add new fragment',
     ADD_FRAGMENT: 'add fragment',
+    PUBLIC_VIEW: 'public view',
+    EDIT_VIEW: 'edit mode',
     NAME: 'fragment name',
     TAGS: 'fragment tags',
     SAVE: 'save fragment',

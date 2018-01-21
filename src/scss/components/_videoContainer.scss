@@ -5,7 +5,7 @@
   height: 100%;
   overflow: hidden;
   @media #{$medium-down} {
-    padding-left: 200px;
+    padding-left: 280px;
   }
   @media #{$small-down} {
     padding-left: 0;
@@ -28,19 +28,36 @@
     .loader-icon {
       position: absolute;
       top: 50%;
-      margin-top: 60px;
+      margin-top: -40px;
       left: 50%;
-      margin-left: -60px;
+      margin-left: -40px;
       border: 16px solid rgba($color-gray, .5);
       border-top: 16px solid $color-primary;
       border-radius: 50%;
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       animation: spin 2s linear infinite;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+  }
+  .video-control{
+    a{
+      border: 1px solid $color-primary;
+      padding: 5px 10px;
+      text-align: center;
+      line-height: 3.1rem;
+      display: inline-block;
+      border-radius: 5px;
+      width: 3rem;
+      height: 3rem;
+      box-sizing: border-box;
+      i{
+        margin: auto;
+        top: -0.2rem;
+      }
     }
   }
 }

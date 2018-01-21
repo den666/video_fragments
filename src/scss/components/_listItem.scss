@@ -4,6 +4,24 @@
   @media #{$small-down} {
     white-space:nowrap;
   }
+  .search-area{
+    position: relative;
+    i{
+      position: absolute;
+      left: 1rem;
+      top: 1.5rem;
+    }
+    .input-default{
+      width: 100%;
+      margin: 1rem 0;
+      border-radius: 2rem;
+      border-color: rgba($color-gray, .1);
+      padding: 1rem 1rem 1rem 3.5rem;
+      &::placeholder{
+        color: rgba($color-gray, .4);
+      }
+    }
+  }
   .list-item{
     float: left;
     width: 100%;

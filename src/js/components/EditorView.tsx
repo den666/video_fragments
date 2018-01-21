@@ -92,7 +92,6 @@ export default class ModalView extends React.Component<ModalContainerProps, any>
     }
 
     componentWillMount () {
-        console.log('ss', this.props);
         const {editVideo} = this.props;
         if (this.props.editVideo) {
             this.setState({

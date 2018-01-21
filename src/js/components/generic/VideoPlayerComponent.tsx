@@ -7,7 +7,9 @@ import {hashCode} from '../../utils/stringUtils';
 
 interface videoPlayerProps {
     videoActive: videoItem,
-    nextVideo: Function
+    videoList: videoItem[],
+    nextVideo: Function,
+    prevVideo: Function
 }
 
 export default class VideoPlayerComponent extends React.Component<videoPlayerProps, any> {
@@ -19,7 +21,8 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
                             <source src={this.props.videoActive.url}/>
                         </video>,
             progress: 0,
-            changeVideo: false
+            changeVideo: false,
+            isPlay: false
         };
     }
     getUrl = (videoActive: videoItem) => {
@@ -35,7 +38,8 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
                 const videoItem:any = document.getElementById('fragmentVideo');
                 if (videoItem && videoItem.readyState && !videoItem.paused) {
                     this.setState({
-                        progress: videoItem.currentTime
+                        progress: videoItem.currentTime,
+                        isPlay: true
                     });
                     if (!this.state.changeVideo
                         && (this.props.videoActive.end && videoItem.currentTime >= this.props.videoActive.end - 1
@@ -54,6 +58,10 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
                             }
                         );
                     }
+                } else {
+                    this.setState({
+                        isPlay: false
+                    });
                 }
             },
             250);
@@ -61,12 +69,21 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
 
     getVideoData = () => {
         const editorVideoItem:any = document.getElementById('fragmentVideo');
-        if (editorVideoItem.readyState) {
+        if (editorVideoItem && editorVideoItem.readyState) {
             editorVideoItem.autoplay = true;
             this.setState({
                 videoDuration: parseInt(editorVideoItem.duration, 0)
             });
-            document.getElementById('fragmentVideo').removeEventListener('durationchange', this.getVideoData);
+            editorVideoItem.removeEventListener('durationchange', this.getVideoData);
+        }
+    }
+
+    playButton = () => {
+        const editorVideoItem:any = document.getElementById('fragmentVideo');
+        if (this.state.isPlay) {
+            editorVideoItem.pause();
+        } else {
+            editorVideoItem.play();
         }
     }
 
@@ -74,6 +91,7 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
         this.progress();
         document.getElementById('fragmentVideo').addEventListener('durationchange', this.getVideoData);
     }
+
 
     componentWillReceiveProps (nextProps: videoPlayerProps) {
         if (nextProps.videoActive.isLoad) {
@@ -97,8 +115,9 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
                 });
         }
     }
+
     render() {
-        const {videoActive} = this.props;
+        const {videoActive, videoList, nextVideo, prevVideo} = this.props;
         return  <div className="width-100">
                     <div className="left-align m-b-lg">
                         <span className="light size-h4 text-primary">{videoActive.name}</span>
@@ -110,6 +129,43 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
                         }
                     </div>
                     {this.state.videoPlayer}
+
+                    <div className="video-control left-align">
+                        <div className="btn-item inline-block">
+                            <a className="pointer inline-block" onClick={this.playButton}>
+                                {this.state.isPlay ?
+                                    <i className="i-css i-pause"></i>
+                                    :
+                                    <i className="i-css i-play"></i>
+                                }
+                            </a>
+                            <div className="small center-align text-gray text-white">{` - `}</div>
+                        </div>
+                        {videoList.length > 1 &&
+                            [
+                                <div key={'a'} className="btn-item inline-block"
+                                     onClick={() => {
+                                         !videoActive.isLoad && prevVideo();
+                                     }}>
+                                    <a className="pointer inline-block" onClick={this.playButton}>
+                                        <i className="i-css i-arrow-l"></i>
+                                    </a>
+                                    <div className="small center-align text-gray">{`key: <`}</div>
+                                </div>,
+                                <div key={'b'}
+                                     className="btn-item inline-block"
+                                     onClick={() => {
+                                         !videoActive.isLoad && nextVideo();
+                                     }}>
+                                    <a className="pointer inline-block" onClick={this.playButton}>
+                                        <i className="i-css i-arrow-r"></i>
+                                    </a>
+                                    <div className="small center-align text-gray">{`key: >`}</div>
+                                </div>
+                            ]
+                        }
+                    </div>
+
                     {videoActive.start && !videoActive.isLoad ?
                         <ProgressStatus start={videoActive.start}
                                         end={videoActive.end}

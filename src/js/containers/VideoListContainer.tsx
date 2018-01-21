@@ -5,7 +5,7 @@ import {ACTIVE_VIDEO_CHANGE, DELETE_VIDEO, EDIT_VIDEO} from '../actions/videoAct
 import {SHOW_MODAL} from '../actions/appActions';
 
 
-interface newListInterface extends videoItem{
+export interface newListInterface extends videoItem{
     setActiveVideo?: Function
     deleteVideo?: Function
     editVideo?: Function
@@ -13,7 +13,8 @@ interface newListInterface extends videoItem{
 
 interface stateProps {
     videoList: videoItem[],
-    videoActive: videoItem
+    videoActive: videoItem,
+    isEditing: boolean
 }
 
 interface dispatchProps {
@@ -30,6 +31,7 @@ const mapStateToProps = (state:AppInterface): stateProps => {
     return {
         videoList: state.videoReducer.videoList,
         videoActive: state.videoReducer.videoActive,
+        isEditing: state.appReducer.isEditing
     };
 };
 

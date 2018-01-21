@@ -7,17 +7,20 @@ import {ACTIVE_VIDEO_CHANGE} from '../actions/videoActions';
 interface stateProps {
     videoActive: videoItem,
     videoList: videoItem[]
+    isEditing: boolean
 }
 
 interface dispatchProps {
     openEdit: Function,
-    nextVideo: Function
+    nextVideo: Function,
+    prevVideo: Function
 }
 
 const mapStateToProps = (state:AppInterface): stateProps => {
     return {
         videoActive: state.videoReducer.videoActive,
-        videoList: state.videoReducer.videoList
+        videoList: state.videoReducer.videoList,
+        isEditing: state.appReducer.isEditing
     };
 };
 
@@ -35,6 +38,12 @@ const mapDispatchToProps = (dispatch:Dispatch<any>): dispatchProps => {
                 type: ACTIVE_VIDEO_CHANGE,
                 payload: next
             });
+        },
+        prevVideo: (prev:videoItem) => () => {
+            dispatch({
+                type: ACTIVE_VIDEO_CHANGE,
+                payload: prev
+            });
         }
     };
 };
@@ -43,14 +52,19 @@ const mergeProps = (stateProps: stateProps, dispatchProps: dispatchProps) => {
     let  activeKey:number = 0;
     stateProps.videoList.map((item, key) => {
         if (item.id === stateProps.videoActive.id) {
-            activeKey = key + 1;
+            activeKey = key;
         }
     });
     const next = stateProps.videoActive;
     return {
         ...stateProps,
         ...dispatchProps,
-        nextVideo: dispatchProps.nextVideo(stateProps.videoList[activeKey] || stateProps.videoList[0])
+        nextVideo: dispatchProps.nextVideo(stateProps.videoList[activeKey + 1] || stateProps.videoList[0]),
+        prevVideo: dispatchProps.prevVideo(
+                        (activeKey > 0
+                        ? stateProps.videoList[activeKey - 1]
+                        : stateProps.videoList[stateProps.videoList.length - 1])
+        )
     };
 };
 

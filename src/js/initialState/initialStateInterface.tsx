@@ -16,7 +16,8 @@ export interface videoItem {
 }
 
 export interface appReducer {
-    showModal: boolean
+    showModal: boolean,
+    isEditing: boolean
 }
 
 export interface AppInterface {
