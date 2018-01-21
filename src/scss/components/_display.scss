@@ -259,6 +259,9 @@
   width: 110px;
   line-height: 2rem;
   font-size: .8rem;
+  @media #{$small-down} {
+    width: 85px;
+  }
 }
 
 .input-default{
@@ -276,6 +279,10 @@
   transition: all .3s;
   top: -.5rem;
   position: relative;
+  @media #{$small-down} {
+    width: 150px;
+  }
+
   &:focus:not([readonly]) {
     border-bottom: $input-border-width solid $color-gray;
   }

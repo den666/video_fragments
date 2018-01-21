@@ -71,6 +71,35 @@
         }
       }
     }
+    .edit-area{
+      display: block;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      z-index: 20;
+      a{
+        cursor: pointer;
+        float: right;
+        background: rgba($color-gray, .6);
+        color: $color-white;
+        font-size: .75rem;
+        padding: 1px 8px;
+        margin-right: 1px;
+        border-radius: 5px;
+        &:hover{
+          opacity: .7;
+        }
+      }
+    }
+    .click-area{
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      &:hover{
+        background: rgba($color-primary, .05);
+      }
+    }
   }
   &:last-child{
     border-bottom: 0;

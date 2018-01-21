@@ -33,7 +33,6 @@ export default class RangeView extends React.Component<RangeViewProps, any> {
         const dragContainerW = dragContainer.offsetWidth;
         const dragContainerOffset = dragContainer.offsetLeft;
         const mouseX = e.screenX;
-
         if (mouseX !== 0 && mouseX > dragContainerOffset && mouseX <= (dragContainerOffset + dragContainerW)) {
             const dragPosition = mouseX - dragContainerOffset;
             const startPercent = (dragPosition * 100) / dragContainerW;
@@ -57,6 +56,25 @@ export default class RangeView extends React.Component<RangeViewProps, any> {
 
     }
 
+    moveCursor = (nextProps:RangeViewProps) => {
+        const {videoDuration, start, end} = nextProps;
+        const mainProgressWidth = this.refs.dragContainer.offsetWidth;
+        const left = (+start * mainProgressWidth) / +videoDuration;
+        const right = mainProgressWidth - (+end * mainProgressWidth) / +videoDuration;
+        const statusBar = mainProgressWidth - left - right;
+        this.setState({
+            left,
+            right,
+            statusBar,
+        });
+    }
+
+    componentWillReceiveProps (nextProps:RangeViewProps) {
+        if (!this.props.videoDuration && nextProps.videoDuration && this.props.start) {
+            this.moveCursor(nextProps);
+        }
+    }
+
     render() {
         const {videoDuration, start, end} = this.props;
         return (
@@ -78,7 +96,6 @@ export default class RangeView extends React.Component<RangeViewProps, any> {
                         </span>
                         <div draggable
                              className="drag-area"
-                             onTouchMove={(e:any) => this.startDragEvent('dragA', e)}
                              onDrag={(e:any) => this.startDragEvent('dragA', e)}>
                         </div>
                     </div>
@@ -90,7 +107,6 @@ export default class RangeView extends React.Component<RangeViewProps, any> {
                         </span>
                         <div draggable
                              className="drag-area"
-                             onTouchMove={(e:any) => this.startDragEvent('dragB', e)}
                              onDrag={(e:any) => this.startDragEvent('dragB', e)}>
                         </div>
                     </div>

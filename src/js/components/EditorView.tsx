@@ -58,6 +58,15 @@ export default class ModalView extends React.Component<ModalContainerProps, any>
                     tags: this.state.tags
                 };
                 this.props.saveVideo(data);
+            } else {
+                const newItem = {
+                    ...this.props.editVideo,
+                    name: this.state.name,
+                    start: this.state.start,
+                    end: this.state.end,
+                    tags: this.state.tags
+                };
+                this.props.updateVideo(newItem, this.props.videoActive);
             }
         }
     }
@@ -80,6 +89,20 @@ export default class ModalView extends React.Component<ModalContainerProps, any>
             lapse = `#t=${toDateString(this.state.start)},${toDateString(this.state.end)}`;
         }
         return this.props.mainVideo.url + lapse;
+    }
+
+    componentWillMount () {
+        console.log('ss', this.props);
+        const {editVideo} = this.props;
+        if (this.props.editVideo) {
+            this.setState({
+                start: editVideo.start,
+                end: editVideo.end,
+                name: editVideo.name,
+                tags: editVideo.tags,
+                id: editVideo.id
+            });
+        }
     }
 
     componentDidMount () {

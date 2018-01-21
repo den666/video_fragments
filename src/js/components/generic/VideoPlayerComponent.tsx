@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {videoItem} from '../../initialState/initialStateInterface';
+import {EDITOR_LABELS, LAYOUT} from '../../constants/appLabelsConstants';
 import {toDateString} from '../../utils/dateUtils';
 import ProgressStatus from '../generic/ProgressStatus';
 import {hashCode} from '../../utils/stringUtils';
@@ -77,7 +78,10 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
     componentWillReceiveProps (nextProps: videoPlayerProps) {
         if (nextProps.videoActive.isLoad) {
             this.setState({
-                videoPlayer: <div>cargando</div>
+                videoPlayer: <div className="loader">
+                                <img src={LAYOUT.LOADER}/>
+                                <div className="loader-icon"></div>
+                             </div>
             });
         } else {
             this.setState(
@@ -96,6 +100,15 @@ export default class VideoPlayerComponent extends React.Component<videoPlayerPro
     render() {
         const {videoActive} = this.props;
         return  <div className="width-100">
+                    <div className="left-align m-b-lg">
+                        <span className="light size-h4 text-primary">{videoActive.name}</span>
+                        {videoActive.tags &&
+                        <div className="small light left-align">
+                            <span className="bold text-primary">{EDITOR_LABELS.TAGS}: </span>
+                            <span className="text-gray">{videoActive.tags}</span>
+                        </div>
+                        }
+                    </div>
                     {this.state.videoPlayer}
                     {videoActive.start && !videoActive.isLoad ?
                         <ProgressStatus start={videoActive.start}

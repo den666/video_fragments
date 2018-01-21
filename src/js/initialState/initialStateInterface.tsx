@@ -1,6 +1,7 @@
 export interface videoReducer {
     videoList: videoItem[],
-    videoActive: videoItem
+    videoActive: videoItem,
+    videoEdit?: videoItem | null
 }
 
 export interface videoItem {

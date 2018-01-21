@@ -10,7 +10,7 @@ export default class VideoListView extends React.Component<VideoListContainerPro
         super(props);
     }
     getItemClass = (item: videoItem, videoActiveId:number) => {
-        return `${item.id === videoActiveId && 'active'} pointer list-item flex-row ${item.main && 'main'}`;
+        return `${item.id === videoActiveId && 'active'} list-item flex-row ${item.main && 'main'}`;
     }
     render() {
         const {videoList, videoActive, setActiveVideo} = this.props;
@@ -18,12 +18,11 @@ export default class VideoListView extends React.Component<VideoListContainerPro
             <div className="list-component">
                 {videoList.map((item, key) => {
                     return  <div key={key}
-                                 onClick={item.setActiveVideo()}
                                  className={this.getItemClass(item, videoActive && videoActive.id)}>
                                 <div className={`play-icon flex-column`}>
                                     <i className="i-css i-play"></i>
                                 </div>
-                                <div className="plan-data flex-column">
+                                <div className={`${!item.main && 'p-t-lg'} plan-data flex-column`}>
                                     <div className="ttr">
                                         <span>{EDITOR_LABELS.NAME}:</span> {item.name}
                                     </div>
@@ -32,7 +31,18 @@ export default class VideoListView extends React.Component<VideoListContainerPro
                                             <span>{EDITOR_LABELS.TAGS}:</span> {item.tags}
                                         </div>
                                     }
+
+
                                 </div>
+                                <div className="click-area pointer width-100 height-100"
+                                     onClick={item.setActiveVideo()}>
+                                </div>
+                                {!item.main &&
+                                    <div className="edit-area">
+                                        <a onClick={item.editVideo()}>{EDITOR_LABELS.EDIT}</a>
+                                        <a onClick={item.deleteVideo()}>{EDITOR_LABELS.DELETE}</a>
+                                    </div>
+                                    }
                             </div>;
                 })
                 }

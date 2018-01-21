@@ -1,3 +1,6 @@
 export const SAVE_VIDEO = 'SAVE_VIDEO';
 export const ACTIVE_VIDEO = 'ACTIVE_VIDEO';
 export const ACTIVE_VIDEO_CHANGE = 'ACTIVE_VIDEO_CHANGE';
+export const DELETE_VIDEO = 'DELETE_VIDEO';
+export const EDIT_VIDEO = 'EDIT_VIDEO';
+export const UPDATE_VIDEO = 'UPDATE_VIDEO';
